@@ -40,6 +40,7 @@ From;To;Type;Through;start_x;start_y;stop_x;stop_y;Comment
 2814;2899;river_large;3239;1601;2867;-1;-1;Havelberg-Weben
 #ITALY
 2489;2491;river_large;3245;1513;2234;-1;-1;Roncaglia-Cremona
+2497;2530;river_large;3244;1549;2232;-1;-1;Mantua-Guastalla
 2525;2527;river_large;3243;1610;2225;-1;-1;Rovigo-Ferrara
 2627;2633;sea;8653;1864;1706;1855;1701;Reggio-Messina
 2652;2658;sea;8637;1477;1948;1482;1939;Bonifacio-Olbia
@@ -55,6 +56,7 @@ From;To;Type;Through;start_x;start_y;stop_x;stop_y;Comment
 270;272;sea;986;1541;3618;1551;3616;Nidaros-Hitrar
 307;314;sea;1003;1828;3146;1834;3144;Kalmar-Borgholm
 344;217;sea;1005;1910;3376;1943;3370;Osthammar-Jomala
+341;336;sea;959;1900;3324;1900;3315;Sigtuna-Tälje
 257;256;river_large;8559;-1;-1;-1;-1;Mithrhordaland-Sunnhordaland
 262;263;river_large;8558;-1;-1;-1;-1;Stolsheimen-Fjarland
 #BALTICS
@@ -246,6 +248,13 @@ From;To;Type;Through;start_x;start_y;stop_x;stop_y;Comment
 8376;8375;river_large;9672;-1;-1;-1;-1;BERTA-ABBAY-AGAW
 6358;6356;river_large;9673;-1;-1;-1;-1;ED-DAMER-ATBARA
 6436;6444;river_large;9675;-1;-1;-1;-1;WOLQAYT-SHOWAK_SOUTH
+## North Africa ##
+#Sebou
+4687;4700;river_large;10045;-1;-1;-1;-1;AL-BASRA-SALA
+4694;4696;river_large;10047;-1;-1;-1;-1;FES-SUBU
+# Oum er-Rbia
+4705;4704;river_large;10133;-1;-1;-1;-1;MAZAGHAN-AZZAMUR
+4718;4746;river_large;10134;-1;-1;-1;-1;MARRAKESH-EL-BOROUJ
 ## Iberia ##
 #Guadalquivir
 1977;1985;river_large;9676;-1;-1;-1;-1;JAEN-UBEDA
@@ -298,6 +307,11 @@ From;To;Type;Through;start_x;start_y;stop_x;stop_y;Comment
 #Po
 2474;2483;river_large;9719;-1;-1;-1;-1;VIGEVANO-TORTONA
 2045;2470;river_large;9720;-1;-1;-1;-1;CHIERI-VERCELLI
+#Arno
+2536;2557;river_large;10048;-1;-1;-1;-1;PISA-LIVORNO
+2543;2559;river_large;10049;-1;-1;-1;-1;FIRENZE-IMPRUNETA
+#Tiber
+2577;2575;river_large;10050;-1;-1;-1;-1;VATICAN-ROMA
 ## Britain ##
 #Thames
 1555;1558;river_large;9721;-1;-1;-1;-1;READING-OXFORD
@@ -306,9 +320,14 @@ From;To;Type;Through;start_x;start_y;stop_x;stop_y;Comment
 1625;1603;river_large;9722;-1;-1;-1;-1;EVESHAM-WARWICK
 1647;1646;river_large;9723;-1;-1;-1;-1;SHREWSBURY-LUDLOW
 1559;1603;river_large;9725;-1;-1;-1;-1;BANBURY-WARWICK
-#Trent
+#Humber
 1620;1587;river_large;9726;-1;-1;-1;-1;RETFORD-GRIMSBY
 1618;1616;river_large;9727;-1;-1;-1;-1;NOTTINGHAM-MELTON
+1592;1588;river_large;10040;-1;-1;-1;-1;DONCASTER-POCKLINGTON
+1599;1595;river_large;10040;-1;-1;-1;-1;RIPON-YORK
+#Nene
+1542;1541;river_large;10043;-1;-1;-1;-1;NORMAN CROSS-HURSTINGSTONE
+1538;1539;river_large;10044;-1;-1;-1;-1;BEDFORD-AMPTHILL
 #Shannon
 46;45;river_large;9729;-1;-1;-1;-1;ENNIS-LIMERICK
 23;34;river_large;9730;-1;-1;-1;-1;ATHENRY-ATHLONE
@@ -329,6 +348,7 @@ From;To;Type;Through;start_x;start_y;stop_x;stop_y;Comment
 2097;2096;river_large;9747;-1;-1;-1;-1;LIEGE-HUY
 2394;2091;river_large;9748;-1;-1;-1;-1;MEZIERES-BOUILLON
 2395;2081;river_large;9750;-1;-1;-1;-1;VERDUN-SAINT-MIHIEL
+2715;2078;river_large;9743;-1;-1;-1;-1;VAUDEMONT-EPINAL
 ## Northern Europe ##
 #Ems
 2419;2436;river_large;9751;-1;-1;-1;-1;EMMEN-LEER
@@ -381,6 +401,15 @@ From;To;Type;Through;start_x;start_y;stop_x;stop_y;Comment
 #Volga
 5359;590;river_large;10026;-1;-1;-1;-1;Lachyk-Uba-Cheboksary
 5383;579;river_large;10027;-1;-1;-1;-1;Saran-Saransk
+#Kuban
+598;5335;river_large;10058;-1;-1;-1;-1;Tmutarakan-Kuban
+5289;5301;river_large;10059;-1;-1;-1;-1;Papagia-Betzini
+#Terek
+5312;5343;river_large;10061;-1;-1;-1;-1;Sara-Samiran
+5344;5310;river_large;10062;-1;-1;-1;-1;Majar-Cisterki
+#Samur
+5307;5305;river_large;10063;-1;-1;-1;-1;Kizlyar-Samander
+5309;603;river_large;10064;-1;-1;-1;-1;Tserlona-Cabarda
 ## Scandinavia ##
 #Gota Alv
 229;318;river_large;9800;-1;-1;-1;-1;BAGAHUS-KUNGAHALLA
@@ -416,6 +445,13 @@ From;To;Type;Through;start_x;start_y;stop_x;stop_y;Comment
 5003;511;river_large;9841;-1;-1;-1;-1;Braila-Galati
 5016;511;river_large;9843;-1;-1;-1;-1;Cahul-Galati
 3601;3664;river_large;10017;-1;-1;-1;-1;Smederevo-Branicevo
+## Southern Europe ##
+#Axios
+3782;490;river_large;10053;-1;-1;-1;-1;Sthlanitza-Thessalonike
+#Maritsa
+3768;3766;river_large;10065;-1;-1;-1;-1;Traianopolis-Ainos
+3627;494;river_large;10066;-1;-1;-1;-1;Didymoteichon-Adrianopolis
+3634;3632;river_large;10067;-1;-1;-1;-1;Haskovo-Beroe
 ## Middle East ##
 #Tigris-Euphrates
 4828;4795;river_large;9845;-1;-1;-1;-1;BAGHDAD-UKBARA
@@ -440,6 +476,10 @@ From;To;Type;Through;start_x;start_y;stop_x;stop_y;Comment
 5779;5778;river_large;9869;-1;-1;-1;-1;Barda-Mingachevir
 5780;5767;river_large;9870;-1;-1;-1;-1;Tovuz-Ujarma
 5776;5789;river_large;9872;-1;-1;-1;-1;Paidangaran-Varsan
+#Seyhan
+761;5624;river_large;10054;-1;-1;-1;-1;Tarsus-Mallus
+#Ceyhan
+5625;4896;river_large;10056;-1;-1;-1;-1;Anazaribus-TALL HAMID
 ## Central Asia ##
 #Ural
 5317;618;river_large;9875;-1;-1;-1;-1;Saraychiq-Atyrau
@@ -556,6 +596,7 @@ From;To;Type;Through;start_x;start_y;stop_x;stop_y;Comment
 6907;6548;river_large;9996;-1;-1;-1;-1;KUTIGI-BIDA
 6552;8103;river_large;9998;-1;-1;-1;-1;KONTOKORO-GUWARI
 6549;8103;river_large;9996;-1;-1;-1;-1;MINNA-GUWARI
+6555;6556;river_large;10131;-1;-1;-1;-1;KEBBI-SOKOTO-NORTH
 #Chari
 6813;6804;river_large;10002;-1;-1;-1;-1;MAKARI-BAGUIRMI-WEST
 6812;6811;river_large;10003;-1;-1;-1;-1;LOGONE-BIRNI-BANRE
@@ -570,6 +611,22 @@ From;To;Type;Through;start_x;start_y;stop_x;stop_y;Comment
 6516;6535;river_large;10010;-1;-1;-1;-1;NGURU-GABAS
 6519;6520;river_large;10011;-1;-1;-1;-1;KANO-KURA
 6528;6526;river_large;10012;-1;-1;-1;-1;KUDU-AZARE
+#Sassandra
+8229;8208;river_large;10069;-1;-1;-1;-1;EAST_KRU-GAGNOA
+8153;8148;river_large;10071;-1;-1;-1;-1;TURA-SEGUELA
+#Bandama
+8207;8137;river_large;10073;-1;-1;-1;-1;BOUBO-ATTIE
+8139;8131;river_large;10075;-1;-1;-1;-1;BOUBO-BOUAKE
+#Komoe
+8135;8025;river_large;10077;-1;-1;-1;-1;EAST_ATTIE-AOWIN
+8133;8029;river_large;10079;-1;-1;-1;-1;SATAMA-SOKORO-DIABE
+#Nianda
+8214;8215;river_large;10127;-1;-1;-1;-1;KPELLE-GBANSHAY
+#Konkoure
+8191;8190;river_large;10129;-1;-1;-1;-1;KONKURE-KANEYA
+#Geba
+8274;8269;river_large;8702;-1;-1;-1;-1;GUINALA-ACHUM
+8196;8237;river_large;10130;-1;-1;-1;-1;KAADE-BAJAR
 ## Northern Asia ##
 #Angar
 7769;7780;river_large;10019;-1;-1;-1;-1;Olkha-Irkutsk
@@ -579,5 +636,35 @@ From;To;Type;Through;start_x;start_y;stop_x;stop_y;Comment
 7555;7697;river_large;10022;-1;-1;-1;-1;Selenga-Kabans
 7554;7694;river_large;10023;-1;-1;-1;-1;Galuut Nuur-Chikoy
 7552;7549;river_large;10025;-1;-1;-1;-1;Buteeliin Nuruu-Khargal
+#Ob
+7372;1329;river_large;10084;-1;-1;-1;-1;Parabel-Ket
+7378;7433;river_large;10085;-1;-1;-1;-1;Konda_ob-Yaia
+7381;7427;river_large;10086;-1;-1;-1;-1;Kolyvan-Ob
+7406;1132;river_large;10088;-1;-1;-1;-1;Aley-Kirghiz
+7406;7397;river_large;10090;-1;-1;-1;-1;Aley-Barnaul
+1205;1329;river_large;10092;-1;-1;-1;-1;Narim-Ket
+7439;7447;river_large;10093;-1;-1;-1;-1;Chulym_bis-Jorugul
+5866;5897;river_large;10095;-1;-1;-1;-1;Belogorye-Nizyani
+5877;7002;river_large;10096;-1;-1;-1;-1;Chukas Vosh-Koshley Vosh
+7006;7015;river_large;10097;-1;-1;-1;-1;Sibir-Dolgujar
+7027;7010;river_large;10098;-1;-1;-1;-1;Omgul-Vagaiskoy
+1306;7012;river_large;10099;-1;-1;-1;-1;Tara-Kartaszevo
+7062;7044;river_large;10100;-1;-1;-1;-1;Teke-Omsk
+7043;7053;river_large;10102;-1;-1;-1;-1;Koriakovsky-Pavlodar
+7334;7402;river_large;10103;-1;-1;-1;-1;Ak-Taylak-Molibay
+7013;7044;river_large;10104;-1;-1;-1;-1;Petropavolsk-Omsk
+1223;7029;river_large;10107;-1;-1;-1;-1;Ishim-Vikulova
+7035;7019;river_large;10108;-1;-1;-1;-1;Petropavl-Uktuz
+7026;7357;river_large;10110;-1;-1;-1;-1;Karasu-Jangyztau
+7039;7274;river_large;10110;-1;-1;-1;-1;Chargaldzin-Kaska
+7042;1435;river_large;10112;-1;-1;-1;-1;Karu Samys-Astana
+5874;7014;river_large;10114;-1;-1;-1;-1;Koshuki-Vagay
+5889;7017;river_large;10114;-1;-1;-1;-1;Terom-Yalu Torovsk
+895;7020;river_large;10116;-1;-1;-1;-1;Kurgan-Vargashi
+891;5882;river_large;10119;-1;-1;-1;-1;Tyumen-Tabary
+5884;5879;river_large;10121;-1;-1;-1;-1;Tagil-Neramkary
+5874;5882;river_large;10122;-1;-1;-1;-1;Koshuki-Tabary
+5871;5879;river_large;10124;-1;-1;-1;-1;Pelym-Neramkary
+887;892;river_large;10125;-1;-1;-1;-1;Kharom-Vosh-Tselym-Balyn
 
 -1;-1;;-1;-1;-1;-1;-1;

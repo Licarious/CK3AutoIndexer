@@ -1,4 +1,4 @@
-From;To;Type;Through;start_x;start_y;stop_x;stop_y;Comment
+From;To;Type;Through;x;y;x;y;
 #BRITAIN
 13;1690;sea;1019;655;3096;668;3105;Slemish-Arran
 14;1684;sea;1019;677;3055;700;3064;Carrickfergus-Wigtown
@@ -667,4 +667,4 @@ From;To;Type;Through;start_x;start_y;stop_x;stop_y;Comment
 5871;5879;river_large;10125;-1;-1;-1;-1;Pelym-Neramkary
 887;892;river_large;10126;-1;-1;-1;-1;Kharom-Vosh-Tselym-Balyn
 
--1;-1;;-1;-1;-1;-1;-1;
+-1;-1;;-1;-1

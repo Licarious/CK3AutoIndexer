@@ -16,9 +16,9 @@ import time
 import math
 
 #User Inputs
-startProvicne = 0
-endProvince = 10039
-newStartProvicne = 0
+startProvicne = 9660
+endProvince = 10134
+newStartProvicne = 9661
 
 startingDiffrence = newStartProvicne - startProvicne
 newEndProvince = startingDiffrence + endProvince 
@@ -32,6 +32,11 @@ class ProvinceDefinition:
     name2 = ""
     other_info = ""
     lastKnownY = -1
+    def getRGBA(self):
+        return((self.red,self.green,self.blue,255))
+    def getRGB(self):
+        return((self.red,self.green,self.blue))
+
 
 class Posisitions:
     id = 0
@@ -87,8 +92,11 @@ def get_adjacencies(baseMapAdjacencies):
     adjList = []
     x=0
     for line in adjMap:
-        if "From;To;Type;Through;" in line or line.startswith('-1;-1;-1;-1;'):
+        if "From;To;Type;Through;" in line or line.startswith('-1;-1;;-1;-1'):
             continue
+        elif line.strip().startswith("#"):
+            print(line)
+            adjList.append(line)
         else:
             tmpline = line.split(';')
             try:
@@ -102,8 +110,8 @@ def get_adjacencies(baseMapAdjacencies):
                 adj.xEnd = int(tmpline[6])
                 adj.yEnd = int(tmpline[7])
                 adj.commnet = tmpline[8]
-                if (adj.IDfrom >= startProvicne and adj.IDfrom <= endProvince) or (adj.IDto >= startProvicne and adj.IDto <= endProvince) or (adj.IDthrough >= startProvicne and adj.IDthrough <= endProvince):
-                    adjList.append(adj)
+
+                adjList.append(adj)
             except IndexError:
                 pass
     return adjList
@@ -255,24 +263,41 @@ def write_Definitions(deffList,newStartProvicne,newEndProvince):
             outputDeff.write("%s;"%prov.other_info)
     outputDeff.close()
 
-def write_Adjacencies(adjList,newStartProvicne,newEndProvince):
-    outputAdj = open("Output\\map_data\\adjacencies_OutPut.csv", "w",encoding='utf-8',errors='ignore')
+
+def write_Adjacencies(modInputAdjacencies,newStartProvicne,newEndProvince):
+    adjList = get_adjacencies(modInputAdjacencies)
+
+    #get and update lines containing province ID in adjancies.csv
     for prov in adjList:
-        if (prov.IDfrom >= newStartProvicne and prov.IDfrom <= newEndProvince) or (prov.IDto >= newStartProvicne and prov.IDto <= newEndProvince) or (prov.IDthrough >= newStartProvicne and prov.IDthrough <= newEndProvince):
-            outputAdj.write("\n")
-            outputAdj.write("%g;"%prov.IDfrom)
-            outputAdj.write("%g;"%prov.IDto)
-            outputAdj.write("%s;"%prov.adjType)
-            outputAdj.write("%g;"%prov.IDthrough)
-            outputAdj.write("%g;%g;%g;%g;"%(prov.xStart,prov.yStart,prov.xEnd,prov.yEnd))
-            outputAdj.write("%s"%prov.commnet)
+        try:
+            if prov.IDfrom >= startProvicne and prov.IDfrom <= endProvince:
+                prov.IDfrom += startingDiffrence
+            if prov.IDto >= startProvicne and prov.IDto <= endProvince:
+                prov.IDto += startingDiffrence
+            if prov.IDthrough >= startProvicne and prov.IDthrough <= endProvince:
+                prov.IDthrough += startingDiffrence
+        except:
+            pass
 
-
+    outputAdj = open("OutPut\\map_data\\adjacencies.csv", "w",encoding='utf-8',errors='ignore')
+    outputAdj.write("From;To;Type;Through;x;y;x;y;")
+    for adj in adjList:
+        outputAdj.write("\n")
+        try: #if it is an adjacency
+            outputAdj.write("%g;"%adj.IDfrom)
+            outputAdj.write("%g;"%adj.IDto)
+            outputAdj.write("%s;"%adj.adjType)
+            outputAdj.write("%g;"%adj.IDthrough)
+            outputAdj.write("%g;%g;%g;%g;"%(adj.xStart,adj.yStart,adj.xEnd,adj.yEnd))
+            outputAdj.write("%s"%adj.commnet)
+        except: #if it is a string
+            outputAdj.write(adj)
+    outputAdj.write("\n\n-1;-1;;-1;-1\n")
     outputAdj.close()
 
 def draw_UpdatedProvinces(MNRMapProvinces, smallCountyListNames, newSmallCountyListNames):
     pixMNR = MNRMapProvinces.load()
-    img = Image.new(MNRMapProvinces.mode, MNRMapProvinces.size, 'white')
+    img = Image.new('RGBA', MNRMapProvinces.size, (0,0,0,0))
     pixNew = img.load()
     x1,y1=0,0
     x2,y2=MNRMapProvinces.size[0],MNRMapProvinces.size[1]
@@ -282,13 +307,43 @@ def draw_UpdatedProvinces(MNRMapProvinces, smallCountyListNames, newSmallCountyL
     newTupleList = []
     lastY = []
     for prov in smallCountyListNames:
-        tupleList.append((prov.red,prov.green,prov.blue,255))
+        #tupleList.append((prov.red,prov.green,prov.blue,255))
+        tupleList.append(prov.getRGBA())
         lastY.append(-1)
     for prov in newSmallCountyListNames:
-        newTupleList.append((prov.red,prov.green,prov.blue,255))
+        #newTupleList.append((prov.red,prov.green,prov.blue,255))
+        newTupleList.append(prov.getRGBA())
 
+    
     tmpTotal = len(tupleList)
     count = 0
+    print(tmpTotal)
+
+    tmpMapColor = []
+    ColorLength = []
+    for y in range(y1,y2):
+        mapLine = []
+        ColorlengthLine = []
+        length = 1
+        color = pixMNR[x1,y]
+        for x in range(x1+1,x2):
+            if pixMNR[x,y] == color:
+                length+=1
+            else:
+                mapLine.append(color)
+                ColorlengthLine.append(length)
+
+                length=1
+                color = pixMNR[x,y]
+        mapLine.append(color)
+        ColorlengthLine.append(length)
+
+        tmpMapColor.append(mapLine)
+        ColorLength.append(ColorlengthLine)
+        #print(mapLine[5])
+
+    print("Finished Compression")
+
     #print(tupleList)
     #print(counter)
     for y in range(y1,y2):
@@ -306,25 +361,58 @@ def draw_UpdatedProvinces(MNRMapProvinces, smallCountyListNames, newSmallCountyL
                 print("%i%%"%((count*1000/tmpTotal)/10))
             else:
                 print("%i%%"%((y*2)/counter))
-        for x in range(x1,x2):
-            if pixMNR[x,y] in tupleList:
-                #print(tupleList.index(pixMNR[x,y]))
-                pixNew[x,y] = copy.deepcopy(newTupleList[tupleList.index(pixMNR[x,y])])
-                lastY[tupleList.index(pixMNR[x,y])] = y
-            pass
+            if(len(tupleList)==0):
+                break
+        tx=0
+        for x in range(0,len(tmpMapColor[y])):
+            if tmpMapColor[y][x] in tupleList:
+                
+                for i in range(0,ColorLength[y][x]):
+                    pixNew[tx+i,y] = (newTupleList[tupleList.index(tmpMapColor[y][x])])
+                #pixNew[x,y] = (titleList[i].color[0],titleList[i].color[1],titleList[i].color[2],255)
+                lastY[tupleList.index(tmpMapColor[y][x])] = y
+            tx+=ColorLength[y][x]
     img.show()
     img.save("Output\\map_data\\province_Output.png")
     img.close()
 
 
+def write_ProvinceProperties():
+    ProvinceProperties = open("Output\\mnr_province_properties.txt", "w",encoding='utf-8',errors='ignore')
+    for i in range(newStartProvicne,newEndProvince+1):
+        ProvinceProperties.write("%i ={\n"%i)
+        ProvinceProperties.write("\twinter_severity_bias = 0.0\n")
+        ProvinceProperties.write("}\n")
+
+    pass
+
+def update_landedTitles():
+    lTitles = glob.glob('ModInput/common/landed_titles/*.txt')
+    #idList=[]
+    for file in lTitles:
+        f=open(file,encoding='utf-8-sig',errors='ignore')
+        fOut=open(file.replace("ModInput","Output"),'w',encoding='utf-8-sig',errors='ignore')
+        for line in f:
+            if line.strip().startswith("province"):
+                #print(int(line.split("=")[1].strip()))
+                id=int(line.split("=")[1].strip())
+                if id>=startProvicne and id<=endProvince:
+                    line = line.replace(str(id),str((id+startingDiffrence)))
+                    #print(line)
+            fOut.write(line)
+        fOut.close()
+                #idList.append(id)
+        #print("%g , %g"%(min(idList),max(idList)))
+    pass
+
 ts = time.time()
 
 modInputDefinition = open("modInput\\map_data\\definition.csv")
 modInputAdjacencies = open("modInput\\map_data\\adjacencies.csv")
-modInputProvinces = Image.open("modInput\\map_data\\provinces.png")
+modInputProvinces = Image.open("modInput\\map_data\\provinces.png").convert("RGBA")
 INRDefaultMap = open("ModInput\\map_data\\default.map")
 
-adjList = get_adjacencies(modInputAdjacencies)
+
 deffList = get_province_deff(modInputDefinition)
 
 #Get list of all rivers
@@ -354,15 +442,7 @@ for prov in deffList:
     pass
 
 
-#get and update lines containing province ID in adjancies.csv
-for prov in adjList:
-    if prov.IDfrom >= startProvicne and prov.IDfrom <= endProvince:
-        prov.IDfrom += startingDiffrence
-    if prov.IDto >= startProvicne and prov.IDto <= endProvince:
-        prov.IDto += startingDiffrence
-    if prov.IDthrough >= startProvicne and prov.IDthrough <= endProvince:
-        prov.IDthrough += startingDiffrence
-    pass
+
 
 #get all river provinces positions that will be effected by change
 PositionFiles = glob.glob('ModInput/gfx/map/map_object_data/*_locators.txt')
@@ -376,8 +456,10 @@ for file in PositionFiles:
    write_Positions(tmpNewPos,file)
 
 write_Definitions(newSmallCountyListNames,newStartProvicne,newEndProvince)
-write_Adjacencies(adjList,newStartProvicne,newEndProvince)
+write_Adjacencies(modInputAdjacencies,newStartProvicne,newEndProvince)
 write_DefaultMap(INRDefaultMap)
+write_ProvinceProperties()
+#update_landedTitles()
 draw_UpdatedProvinces(modInputProvinces, smallCountyListNames, newSmallCountyListNames)
 
 
